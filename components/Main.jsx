@@ -1,4 +1,3 @@
-'use client'
 import Image from "next/image"
 import devwave from '../public/dev-ed-wave.png'
 import fb from '../public/facebook-circle-fill.svg'
@@ -10,64 +9,56 @@ import css from '../public/css3-fill.svg'
 import javascript from '../public/javascript-fill.svg'
 import reactjs from '../public/reactjs-fill.svg'
 import nextjs from '../public/nextjs.svg'
-import { motion } from "framer-motion"
 
-const avatar = {
-    show: {
-        position: "fixed",
-        top: 200,
-        transition: {
-            duration: 1,
-            ease:  "linear"
-        },
-    }
-}
 const Main = () => {
 
   return (
     <>
-    <div className='auto-container main md:grid md:grid-cols-2 '>
+    <div className='auto-container md:mt-32 mt-10 main md:grid md:grid-cols-2 '>
         <div className="relative sm:mb-0 mb-5">
             <Image 
-                src={mail}
-                alt="fb"
-                width={30}
-                height={30}
-                className="contact-icon absolute md:right-9 md:top-20 right-3/4"
+            src={mail}
+            alt="mail"
+            width={30}
+            height={30}
+            className="contact-icon mail absolute md:right-9 md:top-20 right-3/4" 
+
             />
-            <Image 
+                 <Image 
                 src={linkedin}
-                alt="fb"
+                alt="linkedin"
                 width={30}
                 height={30}
-                className="contact-icon absolute md:right-48 md:bottom-52 right-1/4 "
-            />
-            <Image 
+                className="contact-icon linkedin absolute md:right-48 md:bottom-52 right-1/4 "
+                />
+
+                <Image 
                 src={github}
-                alt="fb"
+                alt="github"
                 width={30}
                 height={30}
-                className="contact-icon absolute md:right-72 md:bottom-28 right-1/3 bottom-20"
-            />
-            <Image 
+                className="contact-icon github absolute md:right-72 md:bottom-28 right-1/3 bottom-20"
+                />
+
+                <Image 
                 src={fb}
                 alt="fb"
                 width={30}
                 height={30}
-                className="contact-icon absolute md:right-64 md:bottom-10 right-3/4 bottom-16"
-            />
+                className="contact-icon fb absolute md:right-64 md:bottom-10 right-3/4 bottom-16"
+                />
             <div 
             className="avatar-container">
-                <motion.div
+                <div
                 >
-                    <Image 
+                <Image 
                 src={devwave}
-                tag="waving avatar"
                 width={300}
                 height={500}
+                alt="Profile avatar"
                 className="avatar mx-auto md:mr-0 md:ml-auto"
                 />
-                </motion.div>
+                </div>
                  
                 <div className="flex">
                     <button className="resume mx-auto md:mr-14 md:ml-auto px-7 bg-slate-800 text-slate-500">
@@ -78,10 +69,10 @@ const Main = () => {
            
         </div>
         <div className="hero-title flex flex-col">
-            <h1 className="head_title text-center md:text-left font-extrabold blue_gradient md:mt-auto md:mb-0">
+            <h1 className="head_title heroname text-center md:text-left font-extrabold blue_gradient md:mt-auto md:mb-0">
             Renniel Jun Espinosa
             </h1>
-            <p className="description text-center md:text-left text-slate-500">
+            <p className="description herogreet text-center md:text-left text-slate-500">
                 <span className="text-slate-300">
                     Hi!
                 </span> {' '}

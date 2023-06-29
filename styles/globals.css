@@ -81,7 +81,7 @@ a {
 }
 @keyframes slide {
     from {
-        transform: translateX(200px);
+        transform: translateX(100px);
         opacity: 0%;
     }
     to {
@@ -111,29 +111,37 @@ a {
 .avatar{
     animation: show 2s ease;
 }
-.contact-icon{
-    animation: fly 5s ease 1, float 15s ease-in-out infinite 10s;;
+.mail{
+    animation: fly 3s ease 1, float 15s ease-in-out infinite 10s;;
 }
-.contact-icon:nth-child(2){
-    animation: fly 6s ease 1, float2 15s ease-in-out infinite 10s;
+.github{
+    animation: fly 3.5s ease 1, float2 15s ease-in-out infinite 10s;
 }
-.contact-icon:nth-child(3){
-    animation: fly 7 ease 1, float 15s ease-in-out infinite 10s;
+.linkedin{
+    animation: fly 4.5s ease 1, float 15s ease-in-out infinite 10s;
 }
-.contact-icon:nth-child(4){
-    animation: fly 7.5s ease 1, float2 15s ease-in-out infinite 10s;
+.fb{
+    animation: fly 5s ease 1, float2 15s ease-in-out infinite 10s;
 }
-
+.heroname {
+    animation: slide 2s ease-out;
+}
+.herogreet {
+    animation: slide 3s ease-out;
+}
 
 .contact-icon:hover {
     animation-play-state: paused;
-    transform: translateY(-5px);
+    background-color: #00aaff9f;
+    background-blend-mode: luminosity;
+    filter: brightness(2);
     width: 35px;
     cursor: pointer;
-    filter: brightness(20);
+    filter: brightness(2);
     border-radius: 50%;
     -webkit-box-shadow: 0px 0px 33px 3px #00AAFF; 
     box-shadow: 0px 0px 33px 3px #00AAFF;
+
 }
 .resume {
     animation: show 4s ease;
@@ -172,6 +180,12 @@ a {
 .visit {
     font-size: clamp(2rem, 2rem + 2vw, 10rem);
     text-shadow: -2px 1px 6px rgb(0, 0, 0);
+}
+.title {
+    font-size: clamp(2rem, 1rem + 2vw, 10rem);
+}
+.desc {
+    font-size: clamp(1em, 0.5em + 0.5vw, 5em);
 }
 .head_title {
     font-size: clamp(2rem, 1rem + 2vw, 10rem);

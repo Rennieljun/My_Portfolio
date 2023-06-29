@@ -1,14 +1,15 @@
-import React from 'react'
 import Main from '@/components/Main'
 import Projects from '@/components/Projects'
+import About from '@/components/About'
 
-const page = () => {
+
+export default function Page(){
+
   return (
     <div className='px-[5%]'>
       <Main />
-      <Projects />
+      <Projects/>
+      <About/>
     </div>
   )
 }
-
-export default page
