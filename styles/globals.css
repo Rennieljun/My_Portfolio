@@ -112,16 +112,16 @@ a {
     animation: show 2s ease;
 }
 .mail{
-    animation: fly 3s ease 1, float 15s ease-in-out infinite 10s;;
+    animation: fly 3s ease-out 1 , float 15s ease-in-out infinite 10s;;
 }
 .github{
-    animation: fly 3.5s ease 1, float2 15s ease-in-out infinite 10s;
+    animation: fly 4s ease-out 1, float2 15s ease-in-out infinite 11s;
 }
 .linkedin{
-    animation: fly 4.5s ease 1, float 15s ease-in-out infinite 10s;
+    animation: fly 5s ease-out 1 , float 15s ease-in-out infinite 12s;
 }
 .fb{
-    animation: fly 5s ease 1, float2 15s ease-in-out infinite 10s;
+    animation: fly 6s ease-out 1, float2 15s ease-in-out infinite 13s;
 }
 .heroname {
     animation: slide 2s ease-out;
@@ -185,7 +185,7 @@ a {
     font-size: clamp(2rem, 1rem + 2vw, 10rem);
 }
 .desc {
-    font-size: clamp(1em, 0.5em + 0.5vw, 5em);
+    font-size: clamp(1em, 0.7em + 0.5vw, 5em);
 }
 .head_title {
     font-size: clamp(2rem, 1rem + 2vw, 10rem);

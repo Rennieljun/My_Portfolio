@@ -50,8 +50,6 @@ const Projects = () => {
                 <motion.p variants={blinking} animate="blink" transition={{delay: 0.9}} className='bg-slate-600 max-w-full h-5 mt-2 rounded-[10px]'></motion.p>
                 <motion.p variants={blinking} animate="blink" transition={{delay: 1}} className='bg-slate-600 max-w-full h-5 mt-2 rounded-[10px]'></motion.p>
                 <motion.p variants={blinking} animate="blink" transition={{delay: 1}} className='bg-slate-600 max-w-full h-5 mt-2 rounded-[10px]'></motion.p>
-                
-
                 </div>
             </div>
         </div>

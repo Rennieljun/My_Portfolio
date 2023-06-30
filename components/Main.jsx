@@ -76,7 +76,7 @@ const Main = () => {
                 <span className="text-slate-300">
                     Hi!
                 </span> {' '}
-                I'm an inspiring developer eager to enhance and improve my skills and knowledge to be an effective contributor in the world of technology.
+                I'm an aspiring developer, eager to enhance and improve my skills and knowledge and become an effective contributor in the world of technology.
             </p>
         </div>
     </div>

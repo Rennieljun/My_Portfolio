@@ -8,8 +8,8 @@ export default function Page(){
   return (
     <div className='px-[5%]'>
       <Main />
-      <Projects/>
       <About/>
+      <Projects/>
     </div>
   )
 }
