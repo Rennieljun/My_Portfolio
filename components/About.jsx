@@ -10,6 +10,9 @@ import reacticon from '@/public/skills icon/react.svg'
 import nextjs from '@/public/skills icon/nextjs.svg'
 import tailwindcss from '@/public/skills icon/tailwindcss.svg'
 import { projdes } from '@/app/Variants/Variants'
+import { useEffect, useState } from 'react'
+import { getDocData } from '@/app/api/auth/[...nextauth]/route'
+import Link from 'next/link'
 
 const title = {
     initial: {
@@ -54,6 +57,14 @@ const childVariant = {
     }
 }
 const About = () => {
+    const [cert, setCert] = useState([])
+
+    useEffect(() => {
+        const data = getDocData();
+        data.then((docs) => {
+            setCert(docs.Certificates);
+        })
+    }, [])
   return (
     <>
     <hr className='border-blue-950 pt-52' />
@@ -70,7 +81,11 @@ const About = () => {
     <div 
     className="auto-container grid md:grid-cols-2 grid-cols-1 gap-3 mt-52">
         <div className='flex flex-col justify-center items-center w-full'>
-             <div className='w-fit rounded-full overflow-hidden'>
+             <motion.div
+             initial={{scale: 0, opacity: 0}}
+             whileInView={{scale: [0, 1.2, 0.8, 1], opacity: 1, transition: {duration: 1, ease: "easeOut"}}}
+             viewport={{once: true}}
+             className='w-fit rounded-full overflow-hidden'>
                 <Image 
                 src={profile}
                 width={300}
@@ -78,31 +93,34 @@ const About = () => {
                 alt="My picture"
                 className='opacity-80 md:max-w-[300px] md:max-h-[400px] w-[200px] h-[200px]'
                 />
-            </div>
-            <blockquote className='md:text-lg text-[3vw] text-slate-500 italic my-5'>
+            </motion.div>
+            <motion.blockquote
+            initial={{y: -20, opacity: 0}}
+            whileInView={{y: 0, opacity: 1, transition: {duration: 1, ease: "easeOut"}}}
+            viewport={{once: true}}
+            className='md:text-lg text-sm text-slate-500 italic my-5'>
                 "We got errors, We sipped coffee"
-            </blockquote>
+            </motion.blockquote>
         </div>
         <div className='flex justify-center items-center w-full'>
              <div className='w-fit overflow-hidden'>
                 <motion.h2 
-                variants={projdes}
-                initial="des"
-                whileInView="desShow"
+                initial={{y: 20, scale: 0, opacity: 0}}
+                whileInView={{y: 0, scale: 1, opacity: 1, transition: {duration: 1, ease: "easeOut"}}}
                 viewport={{once: true}}
-                className='md:text-lg text-[3vw] md:text-left text-center text-slate-500'>
-                    <span className='md:text-lg text-[3vw] text-slate-300 font-bold'>Hello!</span> I'm Renniel my goal is to be a software developer to gain experience and develop my skills and knowledge example of that are the programming languages, tools, framework I used to build this portfolio wich is the <span className='text-cyan-600'>Next.js</span>  a new framework of <span className='text-cyan-600'>React.js</span> that I'm still exploring its functionality and for the styling of this porftolio I used <span className='text-cyan-600'>Tailwind css</span>, <span className='text-cyan-600'>Framer Motion</span>  for the animation and I also used <span className='text-orange-700'>firebase</span> to store some info on this portfolio and messages.
+                className='md:text-lg text-sm md:text-left text-center text-slate-500'>
+                    <span className='md:text-lg text-sm text-slate-300 font-bold'>Hello!</span> I'm Renniel my goal is to be a software developer to gain experience and develop my skills and knowledge example of that are the programming languages, tools, framework I used to build this portfolio wich is the <span className='text-cyan-600'>Next.js</span>  a new framework of <span className='text-cyan-600'>React.js</span> that I'm still exploring its functionality and for the styling of this porftolio I used <span className='text-cyan-600'>Tailwind css</span>, <span className='text-cyan-600'>Framer Motion</span>  for the animation and I also used <span className='text-orange-700'>firebase</span> to store some info on this portfolio and messages.
                 </motion.h2>
             </div>
         </div>
     </div>
-    <div className='auto-container flex flex-col justify-center items-center max-w-[90%] w-[80%] pt-5 mt-32 pb-40'>
-        <h1 className='text-left w-[80%] font-bold text-cyan-500 md:text-2xl text-[4vw]'>Technologies</h1>
+    <div className='auto-container flex flex-col justify-center items-center w-full md:w-[80%] pt-5 mt-32 pb-40'>
+        <h1 className='text-left w-full font-bold text-cyan-500 md:text-2xl text-sm'>Technologies</h1>
         <motion.div 
         variants={containerVariant}
         initial="initial"
         whileInView='show'
-        className='grid md:grid-cols-3 grid-cols-2 gap-2 mb-10 mt-2 p-3'>
+        className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 mb-10 mt-2 p-3'>
             <motion.div 
             variants={childVariant}
             className='flex justify-center items-center bg-slate-800 rounded-sm border border-slate-600 p-1'>
@@ -231,22 +249,51 @@ const About = () => {
             </motion.div>
             
         </motion.div>
-        <div className='flex flex-col gap-2 items-start justify-start w-[80%]'>
+        <h1 className='text-left w-full font-bold text-cyan-500 md:text-2xl text-sm mt-10'>Professional Development</h1>
+        <motion.div 
+        variants={containerVariant}
+        initial="initial"
+        whileInView='show'
+        className='grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-2 mb-10 mt-2 p-3'>
+            {cert?.map(item => (
+                <Link href={item.link} target="_blank" className='cursor-pointer'>
+                <motion.div 
+                variants={childVariant}
+                whileHover={{rotateY: 10, backgroundColor: "lightseagreen", scale: 1.05}}
+                className='flex justify-center items-center bg-slate-800 rounded-sm border border-slate-600 p-1'>
+                <div className='p-1 md:max-w-[300px] md:min-w-[200px] min-w-[100px] w-[250px]'>
+                <Image
+                src={item.image}
+                width={300}
+                height={300}
+                quality={80}
+                loading='lazy'
+                alt={item.title}
+                className='opacity-80'
+                />
+                </div>
+                </motion.div>
+                </Link>
+            ))}
+
+            
+        </motion.div>
+        <div className='flex flex-col gap-2 items-start justify-start md:w-[80%] w-full'>
             <div>
-                <h2 className='md:text-lg text-[3vw] font-bold text-slate-500 mb-5'>You can leave me a message here:</h2>
+                <h2 className='md:text-lg text-sm font-bold text-slate-500 mb-5'>You can leave me a message here:</h2>
             </div>
             <form action="" className='w-full'>
                 <div className='flex gap-3'>
-                    <label htmlFor="" className='md:text-base text-[3vw] text-slate-500 font-bold'>Your Name:</label>
+                    <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Name:</label>
                     <input type="text" width={50} 
                     placeholder='input your name..'
-                    className='md:text-base text-[3vw] px-5 md:max-w-[40%] max-w-[80%] bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' />
+                    className='md:text-base text-sm px-5 md:max-w-[40%] w-[60%] bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' />
                 </div>
                 <div className='flex flex-col gap-3 mt-5 w-full'>
-                    <label htmlFor="" className='md:text-base text-[3vw] text-slate-500 font-bold'>Message:</label>
+                    <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Message:</label>
                     <textarea name="pm" id="personal" rows="5" 
                     placeholder='Type your message here...'
-                    className='md:text-base text-[3vw]  md:w-[50%] w-full px-5 py-2 bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' ></textarea>
+                    className='md:text-base text-sm  md:w-[50%] w-full px-5 py-2 bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' ></textarea>
                 </div>
                 <div className='md:w-[50%] w-full mt-5 flex justify-end items-end'>
                     <button type='submit' className='bg-cyan-600 px-4 py-1 rounded-sm text-sm font-bold text-cyan-950'>Send</button>

@@ -18,7 +18,6 @@ const Projects = () => {
             setMyProj(docs.Projects);
         })
     }, [])
-    console.log(myProj)
   return (
     <>
     <hr className='border-blue-950 pt-52' />
