@@ -7,21 +7,11 @@ import avatar from '/public/avatar.png'
 import menu from '@/public/menu.svg'
 import menuOpen from '@/public/menuOpen.svg'
 
-
 const Nav = () => {
     const [toggleDropdown, setToggleDropdown] = useState(false)
-    const menuContainer = document.getElementsByClassName('item')
 
     const openMenu = () => {
       setToggleDropdown((prev) => prev == false ? true: false);
-      
-      for (let i = 0; i < menuContainer.length; i++){
-        if(menuContainer[i].classList.contains('translate-x-80')){
-          menuContainer[i].classList.replace('translate-x-80', 'translate-x-0');
-        }else {
-          menuContainer[i].classList.replace('translate-x-0', 'translate-x-80');
-        }        
-      }
     }
 
     
@@ -57,17 +47,17 @@ const Nav = () => {
         
     </nav>
     <div className="fixed flex flex-col justify-start place-items-end gap-4 right-0 top-20 bottom-[50%] left-[50%] z-10 pointer-events-none ">
-        <div className="item block w-full rounded-l-2xl z-11 bg-[#1c86ba] shadow-md shadow-black translate-x-80 ease-in-out duration-300">
+        <div className={`item block w-full rounded-l-2xl z-11 bg-[#1c86ba] shadow-md shadow-black translate-x-${toggleDropdown == false ? "80": "0"} ease-in-out duration-300`}>
           <Link href='/profile'>
             <h1 className="text-center w-full font-bold text-lg text-cyan-100 pointer-events-auto ">Profile</h1>
           </Link>
         </div>
-        <div className="item block w-[80%] rounded-l-2xl z-11  bg-[#1c86ba] shadow-md shadow-black translate-x-80 ease-in-out duration-500">
+        <div className={`item block w-[80%] rounded-l-2xl z-11 bg-[#1c86ba] shadow-md shadow-black translate-x-${toggleDropdown == false ? "80": "0"} ease-in-out duration-500`}>
           <Link href='/projects'>
           <h1 className="text-center w-full font-bold text-lg text-cyan-100 pointer-events-auto  ">Projects</h1>
           </Link>
         </div>
-        <div className="item block w-[60%] rounded-l-2xl z-11  bg-[#1c86ba] shadow-md shadow-black translate-x-80 ease-in-out duration-700">
+        <div className={`item block w-[60%] rounded-l-2xl z-11 bg-[#1c86ba] shadow-md shadow-black translate-x-${toggleDropdown == false ? "80": "0"} ease-in-out duration-700`}>
           <Link href='#contacts' scroll={false}>
             <h1 className="text-center w-full font-bold text-lg text-cyan-100 pointer-events-auto ">Contacts</h1>
           </Link>
