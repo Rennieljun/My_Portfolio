@@ -15,7 +15,7 @@ const Main = () => {
   return (
     <>
     <div className='auto-container md:mt-32 mt-10 main md:grid md:grid-cols-2 '>
-        <div className="relative sm:mb-0 mb-5">
+        <div id="contacts" className="relative sm:mb-0 mb-5">
             <Image 
             src={mail}
             alt="mail"

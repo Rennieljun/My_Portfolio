@@ -54,7 +54,7 @@ const Projects = () => {
         </div>
     </div>: ''}
     {myProj?.map((proj) => (
-    <li key={proj.name} className="auto-container pb-10 mb-5 grid md:grid-cols-2 grid-cols-1 gap-3 mt-52">
+    <li key={proj.name} className="auto-container pb-20 grid md:grid-cols-2 grid-cols-1 gap-3 mt-52">
         <motion.h1 className='title text-cyan-500 font-bold text-left mb-5 md:hidden'
         variants={projdes}
         initial="initial"
