@@ -11,8 +11,9 @@ import nextjs from '@/public/skills icon/nextjs.svg'
 import tailwindcss from '@/public/skills icon/tailwindcss.svg'
 import { projdes } from '@/app/Variants/Variants'
 import { useEffect, useState } from 'react'
-import { getDocData } from '@/app/api/auth/[...nextauth]/route'
+import { db, getDocData, getMessage } from '@/app/api/auth/[...nextauth]/route'
 import Link from 'next/link'
+import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
 
 const title = {
     initial: {
@@ -58,13 +59,36 @@ const childVariant = {
 }
 const About = () => {
     const [cert, setCert] = useState([])
-
+    const [message, setMessage] = useState('');
+    const [userName , setUserName] = useState('');
+    const [sending, setSending] = useState(false);
+    const [success, setSuccess] = useState(false);
     useEffect(() => {
         const data = getDocData();
         data.then((docs) => {
             setCert(docs.Certificates);
         })
     }, [])
+    const submitted = async (e) => {
+        try{
+            e.preventDefault();
+            const data = {
+                username: userName,
+                messages: message
+            }
+            const userdoc = collection(db, 'PersonalMessage');
+            await addDoc(userdoc, data);
+            setTimeout(()=>{
+               setMessage(''); 
+               setSending(false);
+               setSuccess(true);
+            }, 700)
+
+            setSending(true);
+        }catch (e) {
+            alert("Field is empty!");
+        }
+    }
   return (
     <>
     <hr className='border-blue-950 pt-52' />
@@ -256,7 +280,7 @@ const About = () => {
         whileInView='show'
         className='grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-2 mb-10 mt-2 p-3'>
             {cert?.map(item => (
-                <Link href={item.link} target="_blank" className='cursor-pointer'>
+                <Link key={item.title} href={item.link} target="_blank" className='cursor-pointer'>
                 <motion.div 
                 variants={childVariant}
                 whileHover={{rotateY: 10, backgroundColor: "lightseagreen", scale: 1.05}}
@@ -282,21 +306,25 @@ const About = () => {
             <div>
                 <h2 className='md:text-lg text-sm font-bold text-slate-500 mb-5'>You can leave me a message here:</h2>
             </div>
-            <form action="" className='w-full'>
+            <form action="" className='w-full' onSubmit={submitted}>
                 <div className='flex gap-3'>
                     <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Name:</label>
                     <input type="text" width={50} 
                     placeholder='input your name..'
-                    className='md:text-base text-sm px-5 md:max-w-[40%] w-[60%] bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' />
+                    className='md:text-base text-sm px-5 md:max-w-[40%] w-[60%] bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' required value={userName} onChange={(e)=> setUserName(e.target.value)} />
                 </div>
                 <div className='flex flex-col gap-3 mt-5 w-full'>
                     <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Message:</label>
                     <textarea name="pm" id="personal" rows="5" 
                     placeholder='Type your message here...'
-                    className='md:text-base text-sm  md:w-[50%] w-full px-5 py-2 bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' ></textarea>
+                    className={`md:text-base text-sm  md:w-[50%] w-full px-5 py-2 bg-slate-900 ${ success == true ? 'border-green-500' : 'border-slate-600' } border rounded-[10px] shadow-inner shadow-black placeholder-slate-600`} required value={message} onChange={(e)=> {
+                        setMessage(e.target.value)
+                        setSuccess(false);
+                        }}></textarea>
+                    {success == true ? <p className='text-sm text-green-500'>Sent</p> : ''}
                 </div>
                 <div className='md:w-[50%] w-full mt-5 flex justify-end items-end'>
-                    <button type='submit' className='bg-cyan-600 px-4 py-1 rounded-sm text-sm font-bold text-cyan-950'>Send</button>
+                    <button type='submit' className={`bg-cyan-600 px-4 py-1 rounded-sm text-sm font-bold ${sending == true ? 'text-slate-600' : 'text-cyan-95'}`} disabled={sending == true ? true : false}>{sending == false ? 'Send' : 'Sending..'}</button>
                 </div>
             </form>
         </div>
