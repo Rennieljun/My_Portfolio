@@ -17,6 +17,14 @@ const PojectList = () => {
 
   return (
     <> 
+    {proj.length == 0 ? 
+    (
+      (
+        <div className="w-[200px] h-[300px] rounded-lg bg-slate-800 border-2 border-dashed border-slate-600 flex justify-center items-center overflow-hidden duration-300 ease-linear animate-pulse">
+              <h1 className="text-lg text-center w-full text-slate-500">Item Loading...</h1>
+        </div>
+      )
+    ) : '' }
     {proj.map(item => (
     <li key={item.name} className="w-[200px] h-[300px] rounded-lg bg-slate-800 border border-slate-600 relative overflow-hidden shadow-lg shadow-black">
         <Image 

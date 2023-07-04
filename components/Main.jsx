@@ -14,8 +14,6 @@ import Link from "next/link"
 import { DownloadURL } from "@/app/lib/dlUrl"
 const Main = () => {
     const dl = DownloadURL();
-
-    console.log(dl);
   return (
     <>
     <div className='auto-container md:mt-32 mt-10 main md:grid md:grid-cols-2 '>

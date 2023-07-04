@@ -43,7 +43,7 @@ const Contacts = () => {
         <input type="text" id='name' name='name' title='Please enter your name' minLength={2} maxLength={20} required value={name} onChange={(e)=> setName(values.name = e.target.value)} placeholder='enter your name...' className='md:text-base text-sm px-5 md:max-w-[40%] w-[70%] bg-slate-900 border-slate-600 border rounded-[5px] shadow-inner shadow-black placeholder-slate-700 focus:outline-cyan-600'/>
         <br />
         <label htmlFor="email" className='md:text-base text-sm text-slate-500 font-bold'>Email:</label>
-        <input type="email" id='email' name='email' required value={email} onChange={(e)=> setEmail(values.email = e.target.value)} className='md:text-base text-sm px-5 md:max-w-[40%] w-[70%] bg-slate-900 border-slate-700 border rounded-[5px] shadow-inner shadow-black placeholder-slate-600 focus:outline-cyan-600' placeholder='enter your email...'/>
+        <input type="email" id='email' name='email' required value={email} onChange={(e)=> setEmail(values.email = e.target.value)} className='md:text-base text-sm px-5 md:max-w-[40%] w-[70%] bg-slate-900 border-slate-600 border rounded-[5px] shadow-inner shadow-black placeholder-slate-700 focus:outline-cyan-600' placeholder='enter your email...'/>
         <br />
         <label htmlFor="subject" className='md:text-base text-sm text-slate-500 font-bold'>Subject: </label>
         <input type="text" id='subject' name='subject' minLength={3} maxLength={50} required value={subject} onChange={(e)=> setSubject(values.subject = e.target.value)} className='md:text-lg text-base font-bold px-5 md:max-w-[60%] w-full bg-slate-900 border-slate-600 border rounded-[5px] shadow-inner shadow-black placeholder-slate-700 focus:outline-cyan-600' placeholder='Enter the subject..' />
