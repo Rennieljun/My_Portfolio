@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react"
-import {resumePath} from '@/app/api/auth/[...nextauth]/route'
-import { getDownloadURL } from "firebase/storage"
+import { dlLink } from "../api/auth/[...nextauth]/route"
+
 
 export const DownloadURL = () => {
 const [dl, setDl] = useState('')
 
-    useEffect(()=> {
-        getDownloadURL(resumePath).then((url) => {
-            setDl(url);
-        })
-    }, [])
+useEffect(()=> {
+    dlLink.then((url) => setDl(url));
+}, [])
 
-    return dl;
+return dl;
 }

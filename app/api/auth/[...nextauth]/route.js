@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {collection, doc, getDoc, getFirestore} from 'firebase/firestore'
-import { getStorage, ref} from 'firebase/storage'
+import { getDownloadURL, getStorage, ref} from 'firebase/storage'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,4 +31,5 @@ export async function getDocData() {
     console.error(e)
   }
 }
+export const dlLink = getDownloadURL(resumePath);
 
