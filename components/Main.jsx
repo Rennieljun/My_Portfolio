@@ -12,8 +12,11 @@ import reactjs from '../public/reactjs-fill.svg'
 import nextjs from '../public/nextjs.svg'
 import Link from "next/link"
 import { DownloadURL } from "@/app/lib/dlUrl"
+import { url } from "@/app/api/auth/[...nextauth]/route"
 const Main = () => {
-    const dl = DownloadURL();
+    const dl = url;
+
+    console.log(dl);
   return (
     <>
     <div className='auto-container md:mt-32 mt-10 main md:grid md:grid-cols-2 '>
