@@ -18,11 +18,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const docRef = doc(db, 'PortfolioInfo', 'Info')
-export const storage = getStorage(app);
-export const resumePath = ref(storage, 'resume/MyResume.pdf');
+
 export async function getDocData() {
   try{
     const docu = await getDoc(docRef);
@@ -31,5 +30,4 @@ export async function getDocData() {
     console.error(e)
   }
 }
-export const dlLink = getDownloadURL(resumePath);
 
