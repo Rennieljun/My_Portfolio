@@ -80,6 +80,7 @@ const Projects = () => {
                 quality={80}
                 loading='lazy'
                 placeholder={blur}
+                priority={false}
                 alt={"this is a " + proj.name + " image"}
                  />
                  </Suspense>

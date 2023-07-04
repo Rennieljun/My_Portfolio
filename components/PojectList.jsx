@@ -22,6 +22,8 @@ const PojectList = () => {
         <Image 
         src={item.url}
         fill
+        sizes="(max-width: 200px) 10vh"
+        priority={false}
         alt={item.name}
         />
         <div className="group absolute top-0 right-0 left-0 bottom-[-150px] flex justify-end hover:bottom-[0] items-end duration-700 ease-out transition-all pointer-events-auto overflow-visible">

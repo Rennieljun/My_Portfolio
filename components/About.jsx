@@ -9,11 +9,10 @@ import javascript from '@/public/skills icon/javascript.svg'
 import reacticon from '@/public/skills icon/react.svg'
 import nextjs from '@/public/skills icon/nextjs.svg'
 import tailwindcss from '@/public/skills icon/tailwindcss.svg'
-import { projdes } from '@/app/Variants/Variants'
 import { useEffect, useState } from 'react'
 import { db, getDocData, getMessage } from '@/app/api/auth/[...nextauth]/route'
 import Link from 'next/link'
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import Contacts from './Contacts'
 
 const title = {
     initial: {
@@ -59,36 +58,12 @@ const childVariant = {
 }
 const About = () => {
     const [cert, setCert] = useState([])
-    const [message, setMessage] = useState('');
-    const [userName , setUserName] = useState('');
-    const [sending, setSending] = useState(false);
-    const [success, setSuccess] = useState(false);
     useEffect(() => {
         const data = getDocData();
         data.then((docs) => {
             setCert(docs.Certificates);
         })
     }, [])
-    const submitted = async (e) => {
-        try{
-            e.preventDefault();
-            const data = {
-                username: userName,
-                messages: message
-            }
-            const userdoc = collection(db, 'PersonalMessage');
-            await addDoc(userdoc, data);
-            setTimeout(()=>{
-               setMessage(''); 
-               setSending(false);
-               setSuccess(true);
-            }, 700)
-
-            setSending(true);
-        }catch (e) {
-            alert("Field is empty!");
-        }
-    }
   return (
     <>
     <hr className='border-blue-950 pt-52' />
@@ -123,7 +98,7 @@ const About = () => {
             whileInView={{y: 0, opacity: 1, transition: {duration: 1, ease: "easeOut"}}}
             viewport={{once: true}}
             className='md:text-lg text-sm text-slate-500 italic my-5'>
-                "We got errors, We sipped coffee"
+                "We got errors, We sipped coffee."
             </motion.blockquote>
         </div>
         <div className='flex justify-center items-center w-full'>
@@ -133,7 +108,7 @@ const About = () => {
                 whileInView={{y: 0, scale: 1, opacity: 1, transition: {duration: 1, ease: "easeOut"}}}
                 viewport={{once: true}}
                 className='md:text-lg text-sm md:text-left text-center text-slate-500'>
-                    <span className='md:text-lg text-sm text-slate-300 font-bold'>Hello!</span> I'm Renniel my goal is to be a software developer to gain experience and develop my skills and knowledge example of that are the programming languages, tools, framework I used to build this portfolio wich is the <span className='text-cyan-600'>Next.js</span>  a new framework of <span className='text-cyan-600'>React.js</span> that I'm still exploring its functionality and for the styling of this porftolio I used <span className='text-cyan-600'>Tailwind css</span>, <span className='text-cyan-600'>Framer Motion</span>  for the animation and I also used <span className='text-orange-700'>firebase</span> to store some info on this portfolio and messages.
+                    <span className='md:text-lg text-sm text-slate-300 font-bold'>Hello, </span> I'm Renniel. My goal is to be a software developer to gain experience and develop my skills and knowledge. Example of that are the programming languages, tools, framework I used to build this portfolio wich is the <span className='text-cyan-600'>Next.js</span>  a new framework of <span className='text-cyan-600'>React.js</span> that I'm still exploring its functionality and for the styling of this porftolio I used <span className='text-cyan-600'>Tailwind css</span>, <span className='text-cyan-600'>Framer Motion</span>  for the animation and I also used <span className='text-orange-700'>firebase</span> to store some info on this portfolio and NodeMailer so you can send me a message.
                 </motion.h2>
             </div>
         </div>
@@ -302,31 +277,11 @@ const About = () => {
 
             
         </motion.div>
-        <div className='flex flex-col gap-2 items-start justify-start md:w-[80%] w-full'>
+        <div className='flex flex-col gap-2 items-start justify-start md:pb-36 pb-5 md:w-[80%] w-full'>
             <div>
-                <h2 className='md:text-lg text-sm font-bold text-slate-500 mb-5'>You can leave me a message here:</h2>
+                <h2 className='md:text-3xl text-lg font-extrabold text-slate-500 mb-5'>Contact me:</h2>
             </div>
-            <form action="" className='w-full' onSubmit={submitted}>
-                <div className='flex gap-3'>
-                    <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Name:</label>
-                    <input type="text" width={50} 
-                    placeholder='input your name..'
-                    className='md:text-base text-sm px-5 md:max-w-[40%] w-[60%] bg-slate-900 border-slate-600 border rounded-[10px] shadow-inner shadow-black placeholder-slate-600' required value={userName} onChange={(e)=> setUserName(e.target.value)} />
-                </div>
-                <div className='flex flex-col gap-3 mt-5 w-full'>
-                    <label htmlFor="" className='md:text-base text-sm text-slate-500 font-bold'>Message:</label>
-                    <textarea name="pm" id="personal" rows="5" 
-                    placeholder='Type your message here...'
-                    className={`md:text-base text-sm  md:w-[50%] w-full px-5 py-2 bg-slate-900 ${ success == true ? 'border-green-500' : 'border-slate-600' } border rounded-[10px] shadow-inner shadow-black placeholder-slate-600`} required value={message} onChange={(e)=> {
-                        setMessage(e.target.value)
-                        setSuccess(false);
-                        }}></textarea>
-                    {success == true ? <p className='text-sm text-green-500'>Sent</p> : ''}
-                </div>
-                <div className='md:w-[50%] w-full mt-5 flex justify-end items-end'>
-                    <button type='submit' className={`bg-cyan-600 px-4 py-1 rounded-sm text-sm font-bold ${sending == true ? 'text-slate-600' : 'text-cyan-95'}`} disabled={sending == true ? true : false}>{sending == false ? 'Send' : 'Sending..'}</button>
-                </div>
-            </form>
+            <Contacts/>
         </div>
     </div>
     </>
