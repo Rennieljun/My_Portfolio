@@ -7,8 +7,9 @@ import menu from '@/public/menu.svg'
 import menuOpen from '@/public/menuOpen.svg'
 import {usePathname} from 'next/navigation'
 import { url } from "@/app/api/auth/[...nextauth]/route";
+import { DownloadURL } from "@/app/lib/dlUrl";
 const Nav = () => {
-    const dl = url;
+    const dl = DownloadURL();
     const [toggleDropdown, setToggleDropdown] = useState(false)
     const path = usePathname();
     const menuRef = useRef();

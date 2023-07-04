@@ -12,9 +12,8 @@ import reactjs from '../public/reactjs-fill.svg'
 import nextjs from '../public/nextjs.svg'
 import Link from "next/link"
 import { DownloadURL } from "@/app/lib/dlUrl"
-import { url } from "@/app/api/auth/[...nextauth]/route"
 const Main = () => {
-    const dl = url;
+    const dl = DownloadURL();
 
     console.log(dl);
   return (

@@ -18,13 +18,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 const docRef = doc(db, 'PortfolioInfo', 'Info')
-const storage = getStorage(app);
-const resumePath = ref(storage, 'resume/MyResume.pdf');
-
-
+const resumeRef = doc(db, 'PortfolioInfo', 'resume');
 export async function getDocData() {
   try{
     const docu = await getDoc(docRef);
@@ -33,8 +30,13 @@ export async function getDocData() {
     console.error(e)
   }
 }
-export var url = ''
-getDownloadURL(resumePath).then((data) => {
-  url = data;
-})
+
+export async function getResumeUrl() {
+  try{
+    const resume = await getDoc(resumeRef);
+    return resume.data();
+  }catch(e){
+    console.log(e.message)
+  }
+}
 
