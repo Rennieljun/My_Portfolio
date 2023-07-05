@@ -9,6 +9,7 @@ import javascript from '@/public/skills icon/javascript.svg'
 import reacticon from '@/public/skills icon/react.svg'
 import nextjs from '@/public/skills icon/nextjs.svg'
 import tailwindcss from '@/public/skills icon/tailwindcss.svg'
+import javaicon from '@/public/skills icon/java.svg'
 import { useEffect, useState } from 'react'
 import { db, getDocData, getMessage } from '@/app/api/auth/[...nextauth]/route'
 import Link from 'next/link'
@@ -244,6 +245,42 @@ const About = () => {
                 </div>
                 <div className='px-1'>
                     <p className='md:text-lg text-[3vw] text-slate-400 font-bold p-1'>FIREBASE</p>
+                </div>
+            </motion.div>
+            <motion.div 
+            variants={childVariant}
+            className='flex justify-center items-center bg-slate-800 rounded-sm border border-slate-600 p-1'>
+                <div className='px-1 md:w-[50px] min-w-[20px] w-[30px]'>
+                <Image
+                src={tailwindcss}
+                width={50}
+                height={50}
+                quality={80}
+                loading='lazy'
+                alt='Tailwind'
+                className='opacity-80'
+                />
+                </div>
+                <div className='px-1'>
+                    <p className='md:text-lg text-[3vw] text-slate-400 font-bold p-1'>TAILWIND</p>
+                </div>
+            </motion.div>
+            <motion.div 
+            variants={childVariant}
+            className='flex justify-center items-center bg-slate-800 rounded-sm border border-slate-600 p-1'>
+                <div className='px-1 md:w-[50px] min-w-[20px] w-[30px]'>
+                <Image
+                src={javaicon}
+                width={50}
+                height={50}
+                quality={80}
+                loading='lazy'
+                alt='java'
+                className='opacity-80'
+                />
+                </div>
+                <div className='px-1'>
+                    <p className='md:text-lg text-[3vw] text-slate-400 font-bold p-1'>JAVA</p>
                 </div>
             </motion.div>
             
